@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+COLOR=000000
+
+i3lock -f -t -c ${COLOR}
