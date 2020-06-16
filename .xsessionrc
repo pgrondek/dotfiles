@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+export AWT_TOOLKIT=MToolkit
+wmname LG3D
+
+/usr/bin/nextcloud &
+/home/pgrondek/bin/jetbrains-toolbox --minimize &
+/home/pgrondek/bin/dwmstatus &
+/usr/bin/feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+
+/usr/bin/redshift &
+/usr/bin/compton &
