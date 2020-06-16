@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+BRANCHES=$(git branch --merged|egrep -v "(^\*|master|dev)")
+
+if [ -z "${BRANCHES}" ] ; then
+    echo "Nothing to delete"
+else
+    git branch -d ${BRANCHES}
+fi

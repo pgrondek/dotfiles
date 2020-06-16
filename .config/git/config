@@ -1,0 +1,10 @@
+[user]
+	name = Przemysław Grondek
+[alias]
+	unadd = reset
+[help]
+	autocorrect = 1
+[remotes]
+	prune = true
+[pull]
+	rebase = true
