@@ -14,7 +14,11 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     compton &
     redshift &
 
-    feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+    if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
+        feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+    else if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+        feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+    fi
 fi
 
 if command -v nextcloud &> /dev/null ; then
