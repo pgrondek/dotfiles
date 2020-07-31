@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
@@ -15,8 +15,10 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
 
     if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
         feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
-    else if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
-        feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+    else
+        if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+            feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+        fi
     fi
 fi
 
