@@ -146,3 +146,7 @@ fi
 shopt -s autocd
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+if command -v kubectl &> /dev/null ; then
+    source <(kubectl completion bash)
+fi
