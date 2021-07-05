@@ -13,6 +13,7 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     redshift &
     dwmstatus &
     dunst &
+    numlockx on &
 
     if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
         feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
