@@ -15,11 +15,11 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     dunst &
     numlockx on &
 
-    if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
-        feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+    if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+          feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
     else
-        if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
-            feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+        if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
+          feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
         fi
     fi
 fi
