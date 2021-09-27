@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -e
+
+DMENU='dmenu'
+declare -A DEVICES
+bt_choice=""
+
+function get-bt-devices() {
+  DEVICES=()
+  IFS="\n"
+  for device in $(bluetoothctl devices); do
+    IFS=' '
+    read -r ignore address name <<<"$(echo $device)"
+    echo "$name - $address"
+    DEVICES+=(["$name"]="$address")
+  done
+}
+
+function bt-device-choice() {
+  get-bt-devices
+  device_list=""
+  for device in "${!DEVICES[@]}"; do
+    device_list+="$device\n";
+  done
+  device_list="${device_list%}"
+
+  bt_choice=$(echo -e "$device_list" | "$DMENU" -p "[bt] Choose device" | cut -f 1)
+}
+
+function bt-connect() {
+  bt-device-choice
+  bluetoothctl connect "${DEVICES[$bt_choice]}"
+}
+
+function bt-disconnect() {
+  bt-device-choice
+  bluetoothctl disconnect "${DEVICES[bt_choice]}"
+}
+
+function bt-reconnect() {
+  bt-device-choice
+  bluetoothctl disconnect "${DEVICES[bt_choice]}"
+  bluetoothctl connect "${DEVICES[$bt_choice]}"
+}
+
+function bt-disable() {
+  rfkill block bluetooth
+}
+
+function bt-enable() {
+  rfkill unblock bluetooth
+}
+
+choice=$(echo -e "connect\ndisconnect\nreconnect\ndisable\nenable" | "$DMENU" -p [bt] | cut -f 1)
+
+case "$choice" in
+  connect) bt-connect ;;
+  disconnect) bt-disconnect ;;
+  reconnect) bt-reconnect ;;
+  disable) bt-disable ;;
+  enable) bt-enable ;;
+esac
