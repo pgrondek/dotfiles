@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+DEVICE=pulse
+NAME=Master
+URGENCY=low
+EXPIRE=1500
+
+ALSA_CMD="amixer -D $DEVICE"
+NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE 🔊 "
+
+$ALSA_CMD sset $NAME "$1"
+LEVEL=$($ALSA_CMD sget $NAME | awk -F"[][]" '/Left:/ { print $2 }')
+
+$NOTIFY_CMD $LEVEL
