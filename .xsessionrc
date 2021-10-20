@@ -5,16 +5,40 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     export AWT_TOOLKIT=MToolkit
     wmname LG3D
 
-    if test -f "$HOME/.screenlayout/main.sh"; then
-      "$HOME/.screenlayout/main.sh"
-    fi
-    
     compton &
     redshift &
     dwmstatus &
     dunst &
     numlockx on &
 
+    if command -v blueman-applet &> /dev/null ; then
+       blueman-applet &
+    fi
+
+    # Audio
+    if command -v pasystray &> /dev/null ; then
+        pasystray &
+    fi
+
+    if command -v nextcloud &> /dev/null ; then
+        nextcloud &
+    fi
+    
+    if command -v signal-desktop &> /dev/null ; then
+        signal-desktop --start-in-tray &
+    fi
+
+    # Bluetooth 
+    if command -v jetbrains-toolbox &> /dev/null ; then
+        jetbrains-toolbox --minimize &
+    fi
+
+    # Authentication agent for running application as root
+    if test /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ; then
+        /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+    fi
+
+    # Set background
     if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
           feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
     else
@@ -24,24 +48,4 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     fi
 fi
 
-if command -v nextcloud &> /dev/null ; then
-    nextcloud &
-fi
 
-if command -v jetbrains-toolbox &> /dev/null ; then
-    jetbrains-toolbox --minimize &
-fi
-
-if command -v slack &> /dev/null ; then
-    slack &
-fi
-
-# Authentication agent for running application as root
-if test /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ; then
-    /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-fi
-
-# Bluetooth 
-if command -v blueman-applet &> /dev/null ; then
-   blueman-applet &
-fi
