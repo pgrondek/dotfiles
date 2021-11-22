@@ -28,6 +28,10 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
         signal-desktop --start-in-tray &
     fi
 
+    if command -v steam &> /dev/null ; then
+        steam -silent &
+    fi
+
     # Bluetooth 
     if command -v jetbrains-toolbox &> /dev/null ; then
         jetbrains-toolbox --minimize &
