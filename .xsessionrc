@@ -21,7 +21,7 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     fi
 
     if command -v nextcloud &> /dev/null ; then
-        nextcloud &
+        nextcloud --background &
     fi
     
     if command -v signal-desktop &> /dev/null ; then
