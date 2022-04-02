@@ -42,6 +42,11 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
         /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
     fi
 
+    # Deja duplicty backup monitor
+    if test /usr/libexec/deja-dup/deja-dup-monitor ; then
+        /usr/libexec/deja-dup/deja-dup-monitor &
+    fi
+
     # Set background
     if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
           feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
