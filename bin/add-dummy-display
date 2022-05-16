@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -x
+
+DUMMY_MONITOR="HDMI-A-0"
+
+killall compton
+
+xrandr --newmode "2384x1668_60.00"  338.02  2384 2560 2824 3264  1668 1669 1672 1726  -HSync +Vsync
+xrandr --addmode "$DUMMY_MONITOR" 2384x1668_60.00
+xrandr --output "$DUMMY_MONITOR" --mode 2384x1668_60.00 --below DisplayPort-0
+xrandr --output "$DUMMY_MONITOR" --scale 0.5x0.5
+
+
+# Workaround to disable flickering
+xrandr --output DisplayPort-0 --scale 0.9999x0.9999
+xrandr --output DVI-D-0 --scale 0.9999x0.9999
+
+compton &
+
+if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+   feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+else
+   if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
+       feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+   fi
+fi
+

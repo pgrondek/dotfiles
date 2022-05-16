@@ -1,0 +1,22 @@
+#!/bin/sh
+
+DUMMY_MONITOR=HDMI-A-0
+
+killall compton
+
+xrandr --output $DUMMY_MONITOR --off
+xrandr --delmode $DUMMY_MONITOR "2384x1668_60.00"
+
+# Remove workaround
+xrandr --output DisplayPort-0 --scale 1x1
+xrandr --output DVI-D-0 --scale 1x1
+
+compton &
+
+if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+   feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+else
+   if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
+       feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+   fi
+fi
