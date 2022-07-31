@@ -48,13 +48,15 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     fi
 
     # Set background
-    if test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
-          feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
-    else
-        if test -f /usr/share/backgrounds/gnome/Road.jpg ; then
-          feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
-        fi
+    if test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
+        feh --bg-scale /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
+    elif test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
+        feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+    elif test -f /usr/share/backgrounds/gnome/Road.jpg ; then
+        feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
     fi
 fi
 
-
+if test - f ${HOME}/.xsessionrc-local ; then
+    ${HOME}/.xsessionrc-local
+fi
