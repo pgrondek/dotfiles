@@ -5,7 +5,7 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     export AWT_TOOLKIT=MToolkit
     wmname LG3D
 
-    compton &
+    picom -b
     redshift &
     dwmstatus &
     dunst &
