@@ -9,12 +9,12 @@ bt_choice=""
 function get-bt-devices() {
   DEVICES=()
   IFS="\n"
-  for device in $(bluetoothctl devices); do
-    IFS=' '
-    read -r ignore address name <<<"$(echo $device)"
+  while read -r device; do
+    address=${device:7:17}
+    name=${device:25}
     echo "$name - $address"
     DEVICES+=(["$name"]="$address")
-  done
+  done <<< "$(bluetoothctl devices)"
 }
 
 function bt-device-choice() {
