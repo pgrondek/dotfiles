@@ -10,6 +10,11 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     dwmstatus &
     dunst &
     numlockx on &
+    nm-applet &
+
+    if command -v barrier &> /dev/null ; then
+       barrier &
+    fi
 
     if command -v blueman-applet &> /dev/null ; then
        blueman-applet &
@@ -32,7 +37,6 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
         steam -silent &
     fi
 
-    # Bluetooth 
     if command -v jetbrains-toolbox &> /dev/null ; then
         jetbrains-toolbox --minimize &
     fi
