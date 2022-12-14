@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
+if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export AWT_TOOLKIT=MToolkit
     wmname LG3D
@@ -61,6 +61,6 @@ if [[ "$DESKTOP_SESSION" = "dwm" ]]; then
     fi
 fi
 
-if test - f ${HOME}/.xsessionrc-local ; then
+if test -f ${HOME}/.xsessionrc-local ; then
     ${HOME}/.xsessionrc-local
 fi
