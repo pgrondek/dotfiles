@@ -61,6 +61,8 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     fi
 fi
 
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
 if test -f ${HOME}/.xsessionrc-local ; then
     ${HOME}/.xsessionrc-local
 fi

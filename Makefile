@@ -1,4 +1,4 @@
-FILES = .bash_aliases .bashrc .inputrc .profile .vimrc .xsessionrc
+FILES = .bash_aliases .bashrc .inputrc .profile .vimrc .xsessionrc .Xmodmap
 
 install:
 	cp -v $(FILES) $(HOME)
