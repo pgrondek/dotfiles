@@ -13,6 +13,7 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     dunst &
     numlockx on &
     nm-applet &
+    battery-watch &
 
     if command -v barrier &> /dev/null ; then
        barrier &
