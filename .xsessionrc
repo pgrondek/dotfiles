@@ -8,7 +8,6 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     wmname LG3D
 
     picom -b
-    redshift &
     dwmstatus &
     dunst &
     numlockx on &
@@ -62,6 +61,9 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     elif test -f /usr/share/backgrounds/gnome/Road.jpg ; then
         feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
     fi
+
+    # Add redshift
+    redshift -c ${HOME}/.config/redshift.conf &
 fi
 
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
