@@ -2,6 +2,11 @@
 
 GTK_THEME='Yaru-blue-dark'
 
+if test -f ${HOME}/.xsessionrc-local ; then
+    ${HOME}/.xsessionrc-local
+fi
+
+
 if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export AWT_TOOLKIT=MToolkit
@@ -67,7 +72,3 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
 fi
 
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-
-if test -f ${HOME}/.xsessionrc-local ; then
-    ${HOME}/.xsessionrc-local
-fi
