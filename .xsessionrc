@@ -59,12 +59,14 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     fi
 
     # Set background
-    if test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
-        feh --bg-scale /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
+    if test -f /usr/share/backgrounds/ubuntu2_by_arman1992.jpg; then
+        feh --bg-fill /usr/share/backgrounds/ubuntu2_by_arman1992.jpg &
+    elif test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
+        feh --bg-fill /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
     elif test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
-        feh --bg-scale /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+        feh --bg-fill /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
     elif test -f /usr/share/backgrounds/gnome/Road.jpg ; then
-        feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
+        feh --bg-fill /usr/share/backgrounds/gnome/Road.jpg &
     fi
 
     # Add redshift
