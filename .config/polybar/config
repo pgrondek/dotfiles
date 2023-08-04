@@ -27,7 +27,7 @@ primary = #0D47A1
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/dwm]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -58,7 +58,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = dwm
 modules-center =
-modules-right = filesystem pulseaudio cpu memory eth temperature date powermenu
+modules-right = xkeyboard filesystem pulseaudio cpu memory eth temperature date powermenu
 
 tray-position = right
 tray-padding = 5
@@ -84,19 +84,20 @@ label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
-blacklist-0 = num lock
+blacklist-0 =
+blacklist-1 =
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.primary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.primary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.primary}
 
 [module/filesystem]
 type = internal/fs
@@ -189,32 +190,10 @@ label-empty = %name%
 label-empty-background = ${colors.background}
 label-empty-padding = 2
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
@@ -222,7 +201,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "MEM "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -251,7 +230,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = enp5s0
+interface = br0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -368,7 +347,7 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
-.config
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
@@ -426,7 +405,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
