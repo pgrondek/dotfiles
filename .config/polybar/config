@@ -48,14 +48,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+font-0 = monospace:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Symbola:size=10
 font-3 = OpenSymbol:size=10
 
 modules-left = dwm
 modules-center = player-mpris-tail
-modules-right = xkeyboard filesystem pulseaudio cpu memory eth temperature date powermenu
+modules-right = xkeyboard filesystem pulseaudio cpu memory myip temperature date powermenu
 
 tray-position = right
 tray-padding = 5
@@ -111,12 +111,14 @@ layout-scroll-reverse = false
 
 secondary-layout-symbol = [M]
 label-title = %title%
-label-title-padding = 2
+label-title-padding = 0
 label-title-forefround = ${colors.primary}
-label-title-maxlen = 30
+label-title-maxlen = 120
+label-title-minlen = 120
+label-title-alignment = left
 
 label-layout = %symbol%
-label-layout-padding = 2
+label-layout-padding = 1
 label-layout-foreground = #fff
 label-layout-background = ${colors.primary}
 
@@ -130,11 +132,11 @@ label-floating = F
 label-focused = %name%
 label-focused-background = ${colors.primary}
 label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Selected tag on unselected monitor
 label-unfocused = %name%
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 label-unfocused-background = ${colors.primary}
 label-unfocused-underline= ${colors.primary}
 
@@ -146,11 +148,11 @@ label-visible-padding = ${self.label-focused-padding}
 
 label-urgent = %name%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %name%
 label-empty-background = ${colors.background}
-label-empty-padding = 2
+label-empty-padding = 1
 
 [module/cpu]
 type = internal/cpu
@@ -216,7 +218,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 🕐
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
