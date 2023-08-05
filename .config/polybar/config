@@ -336,6 +336,14 @@ type = custom/script
 exec = ~/.config/polybar/player-mpris-tail.py -f '{icon} {artist} - {title}'
 tail = true
 
+[module/myip]
+type = custom/script
+exec = curl ifconfig.me 2> /dev/null
+interval = 90
+format-underline = #55aa55
+format-prefix = "🌐 "
+format-prefix-font = 2
+
 [module/powermenu]
 type = custom/menu
 
