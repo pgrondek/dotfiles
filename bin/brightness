@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+set -x
+
+DEVICE=pulse
+NAME=Master
+URGENCY=low
+EXPIRE=5000
+
+brightnessctl $@
+
+LEVEL=$(brightnessctl -m | awk -F, '{print $4}' | tr -d %)
+
+notify-send -u $URGENCY \
+  -h "int:value:$LEVEL" \
+  -h string:x-dunst-stack-tag:brightness_notif \
+  -t $EXPIRE \
+  "BRIGHTNESS: $LEVEL"
