@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# https://www.reddit.com/r/suckless/comments/m6r71v/comment/gr7t2z1/?utm_source=reddit&utm_medium=web2x&context=3
+# source of first version: https://www.reddit.com/r/suckless/comments/m6r71v/comment/gr7t2z1/?utm_source=reddit&utm_medium=web2x&context=3
+# My changes:
+# * fixed double notifications for critical level
+# * added dunst stack tag
+# * added dunst value for progress bar
 
 # Control variable
 # Possible values: NONE, FULL, LOW, CRITICAL
@@ -21,23 +25,21 @@ while true; do
 
     # If battery full and not already warned about that
     if [ "$last" != "FULL" ] && [ "$status" = "Full" ]; then
-      notify-send "Battery full"
+      notify-send -h string:x-dunst-stack-tag:battery_notif -h "int:value:$last" "Battery full"
       last="FULL"
     fi
 
     # If low and discharging
-    if [ "$last" != "LOW" ] && [ "$status" = "Discharging" ] && \
-       [ $capacity -le $low ]; then
-      notify-send "Battery low: $capacity%"
+    if [ "$last" != "LOW" ] && [ "$status" = "Discharging" ] && [ $capacity -le $low ]  && [ $capacity -gt $critical ]; then
+      notify-send -h string:x-dunst-stack-tag:battery_notif -h "int:value:$last" "Battery low: $capacity%"
       last=LOW
     fi
 
     # If critical and discharging
     if [ "$status" = "Discharging" ] && [ $capacity -le $critical ]; then
-      notify-send -u critical "Battery very low: $capacity%"
+      notify-send -h string:x-dunst-stack-tag:battery_notif -h "int:value:$last" -u critical "Battery very low: $capacity%"
       last=CRITICAL
     fi
   fi
   sleep 60
 done
-

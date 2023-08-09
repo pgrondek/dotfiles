@@ -3,12 +3,16 @@
 DEVICE=pulse
 NAME=Master
 URGENCY=low
-EXPIRE=1500
+EXPIRE=5000
 
 ALSA_CMD="amixer -D $DEVICE"
-NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE 🔊 "
+NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE VOLUME "
 
 $ALSA_CMD sset $NAME "$1"
 LEVEL=$($ALSA_CMD sget $NAME | awk -F"[][]" '/Left:/ { print $2 }')
 
-$NOTIFY_CMD $LEVEL
+notify-send -u $URGENCY \
+  -h "int:value:$LEVEL" \
+  -h string:x-dunst-stack-tag:volume_notif \
+  -t $EXPIRE \
+  "VOLUME: $LEVEL"

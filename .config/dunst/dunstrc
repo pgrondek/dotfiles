@@ -2,15 +2,22 @@
     ### Display ###
     monitor = 0
     follow = keyboard
-    geometry = "300x5-30+20"
+    width = 400
+    height = 200
+    offset = 30
+    origin = top-right
     indicate_hidden = yes
     shrink = no
-    transparency = 20
+    transparency = 10
     notification_height = 0
     separator_height = 2
     padding = 8
     horizontal_padding = 8
-    frame_width = 3
+    frame_width = 0
+
+    # progress bar
+    progress_bar_max_width = 400
+    progress_bar_min_width = 400
 
     # Defines color of the frame around the notification window.
     frame_color = "#808080"
@@ -20,7 +27,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = FiraCode 12
     line_height = 0
     markup = full
 
@@ -34,7 +41,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<tt><b>%s</b>\n%b\n\n<i>%a</i></tt>"
+    format = "%s\n\n%b\n"
 
     alignment = left
     show_age_threshold = -1
@@ -115,12 +122,13 @@
 [urgency_low]
     background = "#222222"
     foreground = "#888888"
-    timeout = 0
+    highlight = "#153EBC"
+    timeout = 3000
 
 [urgency_normal]
     background = "#222222"
     foreground = "#ffffff"
-    timeout = 0
+    timeout = 30000
 
 [urgency_critical]
     background = "#900000"
