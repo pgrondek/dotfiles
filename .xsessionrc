@@ -1,64 +1,10 @@
 #!/usr/bin/env bash
 
-GTK_THEME='Yaru-blue-dark'
-
 if test -f ${HOME}/.xsessionrc-local ; then
     ${HOME}/.xsessionrc-local
 fi
 
-
-if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export AWT_TOOLKIT=MToolkit
-    wmname LG3D
-
-    picom -b
-    dwmstatus &
-    dunst &
-    numlockx on &
-    nm-applet &
-    battery-watch &
-
-    if command -v barrier &> /dev/null ; then
-       barrier &
-    fi
-
-    if command -v blueman-applet &> /dev/null ; then
-       blueman-applet &
-    fi
-
-    # Audio
-    if command -v pasystray &> /dev/null ; then
-        pasystray &
-    fi
-
-    if command -v nextcloud &> /dev/null ; then
-        nextcloud --background &
-    fi
-    
-    if command -v signal-desktop &> /dev/null ; then
-        signal-desktop --start-in-tray &
-    fi
-
-    if command -v steam &> /dev/null ; then
-        steam -silent &
-    fi
-
-    if command -v jetbrains-toolbox &> /dev/null ; then
-        jetbrains-toolbox --minimize &
-    fi
-
-    # Authentication agent for running application as root
-    if test /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ; then
-        /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-    fi
-
-    # Deja duplicty backup monitor
-    if test /usr/libexec/deja-dup/deja-dup-monitor ; then
-        /usr/libexec/deja-dup/deja-dup-monitor &
-    fi
-
-    # Set background
+function set_backgrounds() {
     if test -f /usr/share/backgrounds/ubuntu2_by_arman1992.jpg; then
         feh --bg-fill /usr/share/backgrounds/ubuntu2_by_arman1992.jpg &
     elif test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
@@ -67,10 +13,120 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
         feh --bg-fill /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
     elif test -f /usr/share/backgrounds/gnome/Road.jpg ; then
         feh --bg-fill /usr/share/backgrounds/gnome/Road.jpg &
+    elif test -f /usr/share/backgrounds/gnome/blobs-l.svg ; then
+        feh --bg-fill /usr/share/backgrounds/gnome/blobs-l.svg &
+    fi
+}
+
+function start_desktop_applications() {
+    # Barrier - Keyboard and mouse sharing tool
+    if command -v barrier &> /dev/null ; then
+        barrier &
     fi
 
-    # Add redshift
-    redshift -c ${HOME}/.config/redshift.conf &
+    # Deja duplicty backup monitor
+    if test /usr/libexec/deja-dup/deja-dup-monitor ; then
+        /usr/libexec/deja-dup/deja-dup-monitor &
+    fi
+
+    # Nextcloud files synchronization
+    if command -v nextcloud &> /dev/null ; then
+        nextcloud --background &
+    fi
+
+    # Blue light filter app
+    if command -v redshift &> /dev/null ; then
+        redshift -c ${HOME}/.config/redshift.conf &
+    fi
+
+    # Signal messaging
+    if command -v signal-desktop &> /dev/null ; then
+        signal-desktop --start-in-tray &
+    fi
+
+    # Steam game launcher
+    if command -v steam &> /dev/null ; then
+        steam -silent &
+    fi
+
+    # Timekpr client applications
+    if command -v timekprc &> /dev/null ; then
+        timekprc &
+    fi
+}
+
+function start_desktop_helper_apps() {
+    # Notification handler
+    dunst &
+
+    # Picom compositor
+    picom -b
+
+    # Setting numlock on
+    numlockx on &
+
+    # App to watch battery level
+    battery-watch &
+}
+
+function start_applets() {
+    # Audio
+    if command -v pasystray &> /dev/null ; then
+        pasystray &
+    fi
+
+    # Bluetooth
+    if command -v blueman-applet &> /dev/null ; then
+       blueman-applet &
+    fi
+
+    # Network manager
+    if command -v nm-applet &> /dev/null ; then
+       nm-applet &
+    fi
+}
+
+# Authentication agent for running application as root
+function start_polkit() {
+    # Archlinux
+    if test /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ; then
+        /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+    fi
+
+    # Ubuntu
+    if test /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ; then
+        /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+    fi
+}
+
+function start_lockscreen_handler() {
+    if command -v xss-lock - &> /dev/null ; then
+        /usr/bin/xss-lock -- i3lock -f -t -c 000000 -n &
+    else
+        notify-send -u CRITICAL "Missing xss-lock cannot lock screen"
+    fi
+
+}
+
+if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export AWT_TOOLKIT=MToolkit
+    wmname LG3D
+
+    start_desktop_helper_apps
+    start_applets
+    start_polkit
+    start_desktop_applications
+    set_backgroundsc
 fi
+
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        # shellcheck source=/dev/null
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
 
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
