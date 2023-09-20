@@ -34,6 +34,11 @@ function start_desktop_applications() {
         nextcloud --background &
     fi
 
+    # Thunderbird email client
+    if command -v thunderbird &> /dev/null ; then
+        thunderbird &
+    fi
+
     # Blue light filter app
     if command -v redshift &> /dev/null ; then
         redshift -c ${HOME}/.config/redshift.conf &
