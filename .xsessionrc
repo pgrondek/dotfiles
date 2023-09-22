@@ -53,6 +53,11 @@ function start_desktop_applications() {
     if command -v timekprc &> /dev/null ; then
         timekprc &
     fi
+
+    # Thunderbird mail client
+    if command -v thunderbird &> /dev/null ; then
+        thunderbird &
+    fi
 }
 
 function start_desktop_helper_apps() {
