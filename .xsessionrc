@@ -124,6 +124,7 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     wmname LG3D
 
     start_desktop_helper_apps
+    start_lockscreen_handler
     start_applets
     start_polkit
     start_desktop_applications
