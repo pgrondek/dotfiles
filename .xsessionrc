@@ -66,6 +66,9 @@ function start_desktop_applications() {
 }
 
 function start_desktop_helper_apps() {
+    # set keyboard layout
+    setxkbmap -layout pl
+
     # Notification handler
     dunst &
 
