@@ -80,6 +80,9 @@ function start_desktop_helper_apps() {
 
     # App to watch battery level
     battery-watch &
+
+    # Set display layouts
+    autorandr -c
 }
 
 function start_applets() {
