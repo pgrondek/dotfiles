@@ -8,3 +8,5 @@ alias l='ls -CF'
 alias open=xdg-open
 alias resolv-cat='cat /run/systemd/resolve/resolv.conf'
 alias resolv-vi='sudo vi /run/systemd/resolve/resolv.conf'
+
+alias vi='vim'
