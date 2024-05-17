@@ -5,7 +5,9 @@ if test -f ${HOME}/.xsessionrc-local ; then
 fi
 
 function set_backgrounds() {
-    if test -f /usr/share/backgrounds/ubuntu2_by_arman1992.jpg; then
+    if test -f /usr/share/backgrounds/my/outrun-vaporwave.jpg; then
+        feh --bg-fill /usr/share/backgrounds/my/outrun-vaporwave.jpg &
+    elif test -f /usr/share/backgrounds/ubuntu2_by_arman1992.jpg; then
         feh --bg-fill /usr/share/backgrounds/ubuntu2_by_arman1992.jpg &
     elif test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
         feh --bg-fill /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
