@@ -29,6 +29,8 @@ function start_desktop_applications() {
     # Deja duplicty backup monitor
     if test /usr/libexec/deja-dup/deja-dup-monitor ; then
         /usr/libexec/deja-dup/deja-dup-monitor &
+    elif test /usr/lib/deja-dup/deja-dup-monitor ; then
+        /usr/lib/deja-dup/deja-dup-monitor &
     fi
 
     # Nextcloud files synchronization
