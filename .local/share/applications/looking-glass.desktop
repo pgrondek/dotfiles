@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Looking Glass
+Comment=Virtual Machine viewer
+Exec=/usr/bin/looking-glass-client -p 5901
+Terminal=false
+Type=Application
+Categories=System;
