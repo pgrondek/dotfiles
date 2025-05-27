@@ -11,8 +11,11 @@ esac
 
 # defining computer type for shell coloring
 TYPE_FILE=/etc/.computer-type
+LOCAL_TYPE_FILE=${HOME}/.local/computer-type
 if [[ -f ${TYPE_FILE} ]]; then
     computer_type=$(cat $TYPE_FILE)
+elif [[ -f ${LOCAL_TYPE_FILE} ]]; then
+    computer_type=$(cat $LOCAL_TYPE_FILE)
 fi
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -75,6 +78,9 @@ if [ "$color_prompt" = yes ]; then
         ;;
         work)
             PS1="${PS1}\[\033[33m\]\h"
+        ;;
+        together)
+            PS1="${PS1}\[\033[35m\]\h"
         ;;
         *)
             PS1="${PS1}\[\033[00m\]\h"
@@ -154,3 +160,7 @@ export EDITOR="$VISUAL"
 if command -v kubectl &> /dev/null ; then
     source <(kubectl completion bash)
 fi
+
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+VIRSH_DEFAULT_CONNECT_URI=qemu:///system
+
