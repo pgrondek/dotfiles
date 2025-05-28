@@ -24,6 +24,13 @@ set relativenumber " relative line numbers
 set wildmenu " visual autocomplete for command menu
 set tabpagemax=10
 
+" enable filetype detection
+filetype on
+filetype plugin on
+filetype indent on " file type based indentation
+
+autocmd FileType make set noexpandtab
+
 function Xsudo()
     :w !sudo tee %
     :q!
