@@ -1,6 +1,13 @@
 FILES = .bash_aliases .bashrc .inputrc .profile .vimrc .xsessionrc
 CONFIGS = .config/mimeapps.list .config/picom.conf .config/redshift.conf .config/user-dirs.dirs .config/rofi/config.rasi
 
+.PHONY: diff
+
+diff:
+	@for file in $(FILES); do \
+		diff -u "$$HOME/$$file" "$$file" || true;  \
+	done;
+
 install: install_config
 	cp -v $(FILES) $(HOME)
 	cp -rv bin/* $(HOME)/bin
