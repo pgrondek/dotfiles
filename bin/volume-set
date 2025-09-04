@@ -1,15 +1,13 @@
 #!/usr/bin/env sh
 
-DEVICE=pulse
-NAME=Master
 URGENCY=low
 EXPIRE=5000
 
-ALSA_CMD="amixer -D $DEVICE"
+ALSA_CMD="pamixer"
 NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE VOLUME "
 
-$ALSA_CMD sset $NAME "$1"
-LEVEL=$($ALSA_CMD sget $NAME | awk -F"[][]" '/Left:/ { print $2 }')
+$ALSA_CMD --set-volume "$1"
+LEVEL=$($ALSA_CMD --get-volume)
 
 notify-send -u $URGENCY \
   -h "int:value:$LEVEL" \
