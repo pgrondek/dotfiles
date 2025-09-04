@@ -111,4 +111,8 @@
     frame_color = "#ff0000"
     timeout = 0
 
+[blueman]
+    appname = "blueman"
+    timeout = 3
+
 # vim: ft=cfg
