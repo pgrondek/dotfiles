@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 killall polybar
 
 if type "xrandr"; then

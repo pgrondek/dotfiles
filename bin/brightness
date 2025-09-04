@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-set -x
-
 DEVICE=pulse
 NAME=Master
 URGENCY=low
