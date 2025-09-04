@@ -3,13 +3,12 @@
     monitor = 0
     follow = keyboard
     width = 400
-    height = 200
+    height = (20, 200)
     offset = 30
     origin = top-right
     indicate_hidden = yes
     shrink = no
     transparency = 10
-    notification_height = 0
     separator_height = 0
     gap_size = 10
     padding = 10
@@ -63,13 +62,11 @@
     history_length = 20
 
     ### Misc/Advanced ###
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
     browser = /usr/bin/sensible-browser
     always_run_script = true
     title = Dunst
     class = Dunst
-    startup_notification = false
-    verbosity = mesg
 
     # Define the corner radius of the notification window
     # in pixel size. If the radius is 0, you have no rounded
@@ -83,7 +80,7 @@
     force_xinerama = false
 
     ### mouse
-    mouse_left_click = do_action
+    mouse_left_click = context
     mouse_middle_click = close_all
     mouse_right_click = close_current
 
@@ -96,28 +93,6 @@
     # using the resolution and physical size. This might be useful in setups
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
-
-[shortcuts]
-
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification.
-    close = ctrl+space
-
-    # Close all notifications.
-    close_all = ctrl+shift+space
-
-    # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
-    # of "1". Make sure this key actually exists on your keyboard layout,
-    # e.g. check output of 'xmodmap -pke'
-    history = ctrl+grave
-
-    # Context menu.
-    context = ctrl+shift+period
 
 [urgency_low]
     background = "#222222"
