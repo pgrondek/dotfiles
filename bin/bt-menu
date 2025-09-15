@@ -31,14 +31,14 @@ function bt-device-choice() {
 
 function bt-connect() {
   bt-device-choice "connect device"
-  if [[ -n "${DEVICES[bt_choice]}" ]]; then
+  if [[ -n "${DEVICES[$bt_choice]}" ]]; then
     bluetoothctl connect "${DEVICES[$bt_choice]}"
   fi
 }
 
 function bt-disconnect() {
   bt-device-choice "disconnect device"
-  if [[ -n "${DEVICES[bt_choice]}" ]]; then
+  if [[ -n "${DEVICES[$bt_choice]}" ]]; then
     bluetoothctl disconnect "${DEVICES[bt_choice]}"
   fi
 }
@@ -46,7 +46,7 @@ function bt-disconnect() {
 function bt-reconnect() {
   bt-device-choice "reconnect device"
   if [[ -n "${DEVICES[bt_choice]}" ]]; then
-    bluetoothctl disconnect "${DEVICES[bt_choice]}"
+    bluetoothctl disconnect "${DEVICES[$bt_choice]}"
     bluetoothctl connect "${DEVICES[$bt_choice]}"
   fi
 }
