@@ -1,1 +1,5 @@
 @theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+
+configuration {
+    modes: "window,run,ssh,drun,filebrowser";
+}
