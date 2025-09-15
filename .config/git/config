@@ -1,5 +1,5 @@
 [user]
-	name = Przemysław Grondek
+	name = Przemek Grondek
 [alias]
 	unadd = reset
 [help]
@@ -8,3 +8,6 @@
 	prune = true
 [pull]
 	rebase = true
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
