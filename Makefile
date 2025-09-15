@@ -17,7 +17,10 @@ install_config: install_config_git install_config_polybar install_config_rofi in
 
 install_config_git:
 ifneq ("$(wildcard $(HOME)/.config/git/config)","")
-	@echo "Git config found, skipping install"
+	@echo "Git config found, merging"
+	rm -f $(HOME)/.config/git/config.back
+	mv $(HOME)/.config/git/config $(HOME)/.config/git/config.back
+	diff --line-format %L .config/git/config $(HOME)/.config/git/config.back | tee $(HOME)/.config/git/config
 else
 	mkdir -p $(HOME)/.config/git
 	cp .config/git/config $(HOME)/.config/git
