@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+function arch_update() {
+  if [ -f /usr/bin/pacman ]; then
+    echo -e "\e[32m[pacman]\e[0m updating"
+    sudo pacman -Suy
+  else
+    echo -e "\e[31m[pacman]\e[0m missing, skipping"
+  fi
+
+  if [ -f /usr/bin/yay ]; then
+    echo -e "\e[32m[yay]\e[0m updating"
+    yay -Suy
+  else
+    echo -e "\e[31m[yay]\e[0m missing, skipping"
+  fi
+}
+
+function debian_update() {
+  if [ -f /usr/bin/apt ]; then
+    declare APT
+    declare APT_NAME
+    if [ -f /usr/bin/aptitude ]; then
+      APT=/usr/bin/aptitude
+      APT_NAME=aptitude
+    elif [ -f /usr/bin/apt-get ]; then
+      APT=/usr/bin/apt-get
+      APT_NAME=apt-get
+    else
+      APT=/usr/bin/apt
+      APT_NAME=apt
+    fi
+    echo "[${APT_NAME}] Updating"
+    ${APT} update
+    ${APT} upgrade
+  else
+    echo -e "\e[31m[apt]\e[0m missing, skipping"
+  fi
+}
+
+function flatpak_update() {
+  if [ -f /usr/bin/flatpak ]; then
+    echo -e "\e[32m[flatpak]\e[0m updating"
+    flatpak update
+    flatpak uninstall --unused
+  else
+    echo -e "\e[31m[flatpak]\e[0m missing, skipping"
+  fi
+}
+
+arch_update
+debian_update
+flatpak_update
