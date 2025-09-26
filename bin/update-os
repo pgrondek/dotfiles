@@ -30,7 +30,7 @@ function debian_update() {
       APT=/usr/bin/apt
       APT_NAME=apt
     fi
-    echo "[${APT_NAME}] Updating"
+    echo -e "\e[32m[${APT_NAME}]\e[0m Updating"
     ${APT} update
     ${APT} upgrade
   else
