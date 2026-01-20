@@ -118,7 +118,7 @@ function start_polkit() {
 
 function start_lockscreen_handler() {
     if command -v xss-lock - &> /dev/null ; then
-        /usr/bin/xss-lock -- i3lock -f -t -c 000000 -n &
+        /usr/bin/xss-lock -- "$HOME/bin/lock" -n
     else
         notify-send -u CRITICAL "Missing xss-lock cannot lock screen"
     fi

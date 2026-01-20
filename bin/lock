@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
 COLOR=000000
+PICTURE=$HOME/Pictures/Garfield.png
 
-i3lock -f -t -c ${COLOR}
+
+#i3lock -f -t -c ${COLOR}
+dunstctl set-paused true
+i3lock -i "$PICTURE" -n -t
+dunstctl set-paused false
+
