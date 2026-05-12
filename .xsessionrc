@@ -7,18 +7,27 @@ if test -f ${HOME}/.xsessionrc-local ; then
 fi
 
 function set_backgrounds() {
+    declare BG_APP
+    declare BG_OPS
+    if [[ "$XDG_SESSION_TYPE" = "wayland" ]] ; then
+            BG_APP=swaybg
+            BG_OPS='-i'
+    else
+            BG_APP=feh
+            BG_OPS='--bg-fill'
+    fi
     if test -f /usr/share/backgrounds/my/outrun-vaporwave.jpg; then
-        feh --bg-fill /usr/share/backgrounds/my/outrun-vaporwave.jpg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/my/outrun-vaporwave.jpg &
     elif test -f /usr/share/backgrounds/ubuntu2_by_arman1992.jpg; then
-        feh --bg-fill /usr/share/backgrounds/ubuntu2_by_arman1992.jpg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/ubuntu2_by_arman1992.jpg &
     elif test -f /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg; then
-        feh --bg-fill /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/Mirror_by_Uday_Nakade.jpg &
     elif test -f /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg ; then
-        feh --bg-fill /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/brad-huchteman-stone-mountain.jpg &
     elif test -f /usr/share/backgrounds/gnome/Road.jpg ; then
-        feh --bg-fill /usr/share/backgrounds/gnome/Road.jpg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/gnome/Road.jpg &
     elif test -f /usr/share/backgrounds/gnome/blobs-l.svg ; then
-        feh --bg-fill /usr/share/backgrounds/gnome/blobs-l.svg &
+        ${BG_APP} ${BG_OPS} /usr/share/backgrounds/gnome/blobs-l.svg &
     fi
 }
 
@@ -73,17 +82,20 @@ function start_desktop_helper_apps() {
     # Notification handler
     dunst &
 
-    # Picom compositor
-    picom -b
+    # Xorg only
+    if [[ "$XDG_SESSION_TYPE" != "wayland" ]] ; then
+        # Picom compositor
+        picom -b
 
-    # Setting numlock on
-    numlockx on &
+        # Set display layouts
+        autorandr -c
+
+        # Setting numlock on
+        numlockx on &
+    fi
 
     # App to watch battery level
     battery-watch &
-
-    # Set display layouts
-    autorandr -c
 }
 
 function start_applets() {
@@ -118,14 +130,13 @@ function start_polkit() {
 
 function start_lockscreen_handler() {
     if command -v xss-lock - &> /dev/null ; then
-        /usr/bin/xss-lock -- "$HOME/bin/lock" -n
+        /usr/bin/xss-lock -- "$HOME/bin/lock" -n &
     else
         notify-send -u CRITICAL "Missing xss-lock cannot lock screen"
     fi
-
 }
 
-if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
+if [[ "$DESKTOP_SESSION" == "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export AWT_TOOLKIT=MToolkit
     wmname LG3D
@@ -136,6 +147,13 @@ if [[ "$DESKTOP_SESSION" = "dwm"  || "$DESKTOP_SESSION" == "dwm-gnome" ]]; then
     start_polkit
     start_desktop_applications
     set_backgrounds
+fi
+
+if [[ "$XDG_SESSION_DESKTOP" == "dwl" ]]; then
+    start_desktop_helper_apps
+    start_desktop_applications
+    set_backgrounds
+    waybar &
 fi
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
