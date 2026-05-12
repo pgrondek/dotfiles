@@ -1,13 +1,20 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+set -x
 
 URGENCY=low
 EXPIRE=5000
 
-ALSA_CMD="pamixer"
-NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE VOLUME "
+ACTION="$1"
 
-$ALSA_CMD --set-volume "$1"
-LEVEL=$($ALSA_CMD --get-volume)
+if [[ "$ACTION" == "-i" ]]; then
+  pamixer -i "$2"
+elif [[ "$ACTION" == "-d" ]]; then
+  pamixer -d "$2"
+fi
+
+LEVEL=$(pamixer --get-volume)
+NOTIFY_CMD="notify-send -u $URGENCY -t $EXPIRE VOLUME "
 
 notify-send -u $URGENCY \
   -h "int:value:$LEVEL" \
