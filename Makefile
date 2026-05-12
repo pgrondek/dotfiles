@@ -7,6 +7,7 @@ diff:
 	@for file in $(FILES); do \
 		diff -u "$$HOME/$$file" "$$file" || true;  \
 	done;
+	diff -u "$$HOME/bin" "./bin" || true;
 
 install: install_config
 	cp -v $(FILES) $(HOME)
