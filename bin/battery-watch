@@ -13,6 +13,7 @@ last="NONE"
 # Default values for LOW/CRITICAL status
 low=15
 critical=10
+notification_id=2137
 
 while true; do
 
@@ -25,19 +26,19 @@ while true; do
 
     # If battery full and not already warned about that
     if [ "$last" != "FULL" ] && [ "$status" = "Full" ]; then
-      notify-send -h string:x-dunst-stack-tag:battery_notif "Battery full"
+      notify-send -r "$notification_id" -h string:x-dunst-stack-tag:battery_notif "Battery full" -t 10000
       last="FULL"
     fi
 
     # If low and discharging
     if [ "$last" != "LOW" ] && [ "$status" = "Discharging" ] && [ $capacity -le $low ]  && [ $capacity -gt $critical ]; then
-      notify-send -h string:x-dunst-stack-tag:battery_notif "Battery low: $capacity%"
+      notify-send -r "$notification_id" -h string:x-dunst-stack-tag:battery_notif "Battery low: $capacity%"
       last=LOW
     fi
 
     # If critical and discharging
     if [ "$status" = "Discharging" ] && [ $capacity -le $critical ]; then
-      notify-send -h string:x-dunst-stack-tag:battery_notif -u critical "Battery very low: $capacity%"
+      notify-send -r "$notification_id" -h string:x-dunst-stack-tag:battery_notif -u critical "Battery very low: $capacity%"
       last=CRITICAL
     fi
   fi
