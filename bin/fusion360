@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-flatpak run --command=bottles-cli com.usebottles.bottles run -p 'Autodesk Fusion 360' -b 'fusion360' -- %u
