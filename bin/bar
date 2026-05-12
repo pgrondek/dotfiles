@@ -4,11 +4,11 @@ killall polybar
 
 if type "xrandr"; then
     for m in $(xrandr --query | grep "connected" |grep "primary" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload dwm &
+        MONITOR=$m polybar --reload dwm &> /dev/null &
     done
     for m in $(xrandr --query | grep " connected" |grep -v "primary" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload dwm &
+        MONITOR=$m polybar --reload dwm &> /dev/null &
     done
 else
-    polybar --reload dwm &
+    polybar --reload dwm &> /dev/null &
 fi
