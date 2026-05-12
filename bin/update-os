@@ -14,6 +14,13 @@ function arch_update() {
   else
     echo -e "\e[31m[yay]\e[0m missing, skipping"
   fi
+
+  if [ -f /usr/bin/paccache ]; then
+    echo -e "\e[32m[paccache]\e[0m cleaning pacman cache"
+    paccache -r
+  else
+    echo -e "\e[31m[paccache]\e[0m missing, not cleaning pacman cache"
+  fi
 }
 
 function debian_update() {
