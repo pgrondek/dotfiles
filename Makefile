@@ -7,14 +7,16 @@ diff:
 	@for file in $(FILES); do \
 		diff -u "$$HOME/$$file" "$$file" || true;  \
 	done;
-	diff -u "$$HOME/bin" "./bin" || true;
+	@diff -u "$$HOME/bin" "./bin" || true;
+	@diff -u "$$HOME/.config/mango" "./.config/mango" || true;
+	@diff -u "$$HOME/.config/waybar" "./.config/waybar" || true;
 
-install: install_config
+install: install_config install_wallpaper
 	cp -v $(FILES) $(HOME)
 	cp -rv bin/* $(HOME)/bin
 	cp -rv .local $(HOME)
 
-install_config: install_config_git install_config_polybar install_config_rofi install_config_other
+install_config: install_config_git install_config_polybar install_config_rofi install_config_mango install_config_waybar install_config_other
 
 install_config_git:
 ifneq ("$(wildcard $(HOME)/.config/git/config)","")
@@ -32,3 +34,12 @@ install_config_rofi:
 
 install_config_other:
 	cp -rv $(CONFIGS) $(HOME)/.config
+
+install_config_mango:
+	cp -rv .config/mango $(HOME)/.config
+
+install_config_waybar:
+	cp -rv .config/waybar $(HOME)/.config
+
+install_wallpaper:
+	cp -rv .config/wallpaper $(HOME)/.config
