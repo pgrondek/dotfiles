@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 DUMMY_MONITOR="HDMI-A-0"
 
 killall compton
@@ -25,4 +23,3 @@ else
        feh --bg-scale /usr/share/backgrounds/gnome/Road.jpg &
    fi
 fi
-

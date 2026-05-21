@@ -2,8 +2,6 @@
 
 address=192.168.50.198
 
-set -x
-
 transmission-remote ${address} -a "$1" &> /dev/null
 
 status=$?

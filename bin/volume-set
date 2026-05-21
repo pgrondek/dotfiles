@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 URGENCY=low
 EXPIRE=5000
 
