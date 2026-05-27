@@ -113,8 +113,8 @@
     },
     "network#wg": {
         "interface": "wg0",
-        "format": "",
-        "format-disconnected": "<span color='#ff6699'></span>",
+        "format": "",
+        "format-disconnected": "<span color='#ff6699'></span>",
         "tooltip-format": "IP: {ipaddr}/{cidr}",
         "on-click-right": "toggle-wg"
     },
