@@ -104,9 +104,10 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": " {signalStrength}%",
+        "format-wifi": "",
         "format-ethernet": "",
-        "tooltip-format": "IF: {ifname} {essid}\nIP: {ipaddr}/{cidr}\nGW: {gwaddr}",
+        "tooltip-format": "IF: {ifname}\nIP: {ipaddr}/{cidr}\nGW: {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\nIF: {ifname}\nIP: {ipaddr}/{cidr}\nGW: {gwaddr}",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "on-click-right": "nm-connection-editor"
