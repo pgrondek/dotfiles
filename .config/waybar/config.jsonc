@@ -16,6 +16,7 @@
     ],
     "modules-right": [
         "idle_inhibitor",
+        "network#wg",
         "network",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -63,7 +64,7 @@
     },
     "backlight": {
         "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "format-icons": ["\uD83D\uDD05", "\uD83D\uDD06"],
         "on-scroll-up": "brightnessctl set +1%",
         "on-scroll-down": "brightnessctl set 1%-",
         "smooth-scrolling-threshold": 1
@@ -109,6 +110,13 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "on-click-right": "nm-connection-editor"
+    },
+    "network#wg": {
+        "interface": "wg0",
+        "format": "",
+        "format-disconnected": "<span color='#ff6699'></span>",
+        "tooltip-format": "IP: {ipaddr}/{cidr}",
+        "on-click-right": "toggle-wg"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
