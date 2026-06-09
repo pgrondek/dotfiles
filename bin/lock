@@ -1,11 +1,14 @@
 #!/usr/bin/env sh
 
 COLOR=000000
-PICTURE=$HOME/Pictures/Garfield.png
+PICTURE=$HOME/.config/wallpaper/retrowave.jpg
 
 
-#i3lock -f -t -c ${COLOR}
-dunstctl set-paused true
-i3lock -i "$PICTURE" -n -t
-dunstctl set-paused false
-
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+  swaylock --show-failed-attempts --image "$PICTURE" --scaling fill
+else
+  #i3lock -f -t -c ${COLOR}
+  dunstctl set-paused true
+  i3lock -i "$PICTURE" -n -t
+  dunstctl set-paused false
+fi

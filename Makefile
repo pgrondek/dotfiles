@@ -16,7 +16,7 @@ install: install_config install_wallpaper
 	cp -rv bin/* $(HOME)/bin
 	cp -rv .local $(HOME)
 
-install_config: install_config_git install_config_polybar install_config_rofi install_config_mango install_config_waybar install_config_other
+install_config: install_config_git install_config_polybar install_config_rofi install_config_mango install_config_waybar install_config_other install_config_swayidle
 
 install_config_git:
 ifneq ("$(wildcard $(HOME)/.config/git/config)","")
@@ -40,6 +40,9 @@ install_config_mango:
 
 install_config_waybar:
 	cp -rv .config/waybar $(HOME)/.config
+
+install_config_swayidle:
+	cp -rv .config/swayidle $(HOME)/.config
 
 install_wallpaper:
 	cp -rv .config/wallpaper $(HOME)/.config
