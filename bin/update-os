@@ -46,6 +46,14 @@ function debian_update() {
   fi
 }
 
+function openwrt_update() {
+  if [ -f /usr/bin/apk ]; then
+    echo -e "\e[32m[apk]\e[0m updating"
+    apk update
+    apk upgrade
+  fi
+}
+
 function flatpak_update() {
   if [ -f /usr/bin/flatpak ]; then
     echo -e "\e[32m[flatpak]\e[0m updating"
@@ -56,6 +64,13 @@ function flatpak_update() {
   fi
 }
 
+# Some functions for cleaning up stuff
+function cleanup() {
+  # cleanup font cache
+  fc-cache -rf
+}
+
 arch_update
 debian_update
 flatpak_update
+cleanup
