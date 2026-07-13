@@ -8,6 +8,14 @@ function arch_update() {
     echo -e "\e[31m[pacman]\e[0m missing, skipping"
   fi
 
+  if [ -f /usr/bin/aur ]; then
+    echo -e "\e[32m[aur]\e[0m updating"
+    pacman -Sl custom | grep -v debug | awk '{print $2}' | xargs aur sync
+  else
+    echo -e "\e[31m[aur]\e[0m missing, skipping"
+  fi
+
+
   if [ -f /usr/bin/paccache ]; then
     echo -e "\e[32m[paccache]\e[0m cleaning pacman cache"
     paccache -r
