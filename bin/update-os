@@ -39,8 +39,8 @@ function debian_update() {
       APT_NAME=apt
     fi
     echo -e "\e[32m[${APT_NAME}]\e[0m Updating"
-    ${APT} update
-    ${APT} upgrade
+    sudo ${APT} update
+    sudo ${APT} upgrade
   else
     echo -e "\e[31m[apt]\e[0m missing, skipping"
   fi
