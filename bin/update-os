@@ -51,6 +51,8 @@ function openwrt_update() {
     echo -e "\e[32m[apk]\e[0m updating"
     apk update
     apk upgrade
+  else
+    echo -e "\e[31m[apk]\e[0m missing, skipping"
   fi
 }
 
@@ -72,5 +74,6 @@ function cleanup() {
 
 arch_update
 debian_update
+openwrt_update
 flatpak_update
 cleanup
