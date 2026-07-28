@@ -9,8 +9,9 @@
     "reload_style_on_change": true,
     "height": 30,
     "modules-left": [
-        "dwl/tags",
-        "dwl/window"
+        "mango/workspaces",
+        "mango/layout",
+        "mango/window"
     ],
     "modules-center": [
     ],
@@ -31,12 +32,18 @@
         "custom/power"
     ],
     // Modules configuration
-    "dwl/tags": {
-        "num-tags": 9,
-        "hide-vacant": true
+    "mango/workspaces": {
+        "hide-empty": true
     },
-    "dwl/window": {
-        "format": "[{layout}]{title}"
+    "mango/layout": {
+        "format": "{}",
+        "format-S": "Scr",
+        "format-T": "Tile",
+        "format-M": "Mono",
+        "format-F": "Flt"
+    },
+    "mango/window": {
+        "format": "{title}"
     },
     "keyboard-state": {
         "numlock": true,
