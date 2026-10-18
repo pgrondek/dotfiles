@@ -10,7 +10,7 @@ function arch_update() {
 
   if [ -f /usr/bin/aur ]; then
     echo -e "\e[32m[aur]\e[0m updating"
-    pacman -Sl custom | grep -v debug | awk '{print $2}' | xargs aur sync
+    aur sync -unCc
   else
     echo -e "\e[31m[aur]\e[0m missing, skipping"
   fi
